@@ -1,0 +1,22 @@
+fun main() {
+    val num1 = 48
+    val num2 = 18
+    val resultado = mcm(num1, num2)
+    println("El mcm de $num1 y $num2 es $resultado.")
+}
+
+// Función para calcular el mínimo común múltiplo (mcm)
+fun mcm(a: Int, b: Int): Int {
+    if (a == 0 || b == 0) {
+        return 0
+    }
+
+    var multiplo = if (a > b) a else b
+
+    while (true) {
+        if (multiplo % a == 0 && multiplo % b == 0) {
+            return multiplo
+        }
+        multiplo++
+    }
+}
