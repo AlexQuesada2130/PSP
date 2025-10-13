@@ -4,7 +4,7 @@ fun main() {
     val resultado = mcd(num1, num2)
     println("El MCD de $num1 y $num2 es $resultado .")
 }
-//Factorial de 0 o 1 == 1 evitamos posibles errores
+
 fun mcd (a : Int, b : Int) : Int {
     //Realizamos el algoritmo de euclides
     var x = a
