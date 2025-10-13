@@ -1,0 +1,15 @@
+fun main() {
+    val num1 = 29
+    primo(num1)
+}
+
+fun primo(a: Int): Int {
+    if (a == 0 || a == 1) {
+        println("No es primo")
+        return 0
+    }
+    
+    if (a % 2 == 0) println ("No es primo")
+    else println ("Es primo")
+    return 0
+}
