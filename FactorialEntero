@@ -1,0 +1,13 @@
+fun main() {
+   //Ejemplo factoria 4 = 4 * 3 * 2 * 2 = 1 * 2 * 3 * 4 = 24
+	val num = 4 
+    val fac = factorial(num)
+    println("El factorial de $num es $fac .")
+}
+//Factorial de 0 o 1 == 1 evitamos posibles errores
+fun factorial (entero: Int) : Int {
+    if (entero == 0 || entero == 1){
+        return 1
+    }
+ 	return entero * factorial(entero -1)
+}
