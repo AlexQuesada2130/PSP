@@ -1,0 +1,38 @@
+fun main() {
+    val cantidad = 5
+    val primos = primo(cantidad)
+    println(primos.joinToString(", "))
+}
+
+fun primo(cantidad: Int): List<Int> {
+    //Usamos mutableList puesto que tendremos que agregar contenido en el transcurso del programa
+    val listaPrimos = mutableListOf<Int>()
+    if (cantidad <= 0){
+        println("La cantidad ha de ser mayor que 0")
+ 		return listaPrimos
+    }
+    var numeroActual = 2
+    
+    while (listaPrimos.size < cantidad) {
+        if (esPrimo(numeroActual)){
+            listaPrimos.add(numeroActual)
+        }
+        numeroActual++
+    }
+    return listaPrimos 
+}
+
+fun esPrimo(numero: Int): Boolean{
+    if (numero < 2) return false
+    if (numero == 2) return true
+    if (numero % 2 == 0) return false
+    //Implementamos un método matematico el cual se prueba mediante la raiz cuadrada
+	//Ejemplo con 49: Si 49 tiene un divisor mayor que 7, entonces también tiene uno menor que 7
+    //Por eso solo probamos hasta 7
+    var divisor = 3
+    while (divisor * divisor <= numero){
+        if (numero % divisor == 0) return false
+        divisor += 2
+    }
+    return true
+}
