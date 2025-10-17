@@ -1,0 +1,30 @@
+fun main() {
+    //Convertimos el contenido generado del array a string
+    println(descomponerPrimo(100).contentToString())
+}
+
+fun descomponerPrimo(numero: Int): IntArray {
+    //Usamos mutableList puesto que tendremos que agregar contenido en el transcurso del programa
+    val listaPrimos = mutableListOf<Int>()
+    var n = numero
+    
+    while (n % 2 == 0) {
+        listaPrimos.add(2)
+        n /= 2
+    }
+    
+    var divisor = 3
+    while (divisor * divisor <= n){
+        while (n % divisor == 0){
+        	listaPrimos.add(divisor)
+        	n /= divisor
+        }
+        divisor += 2
+    }
+    //Añadiendo este if acotamos la posibilidad de perder un número primo
+    if (n > 1) {
+        listaPrimos.add(n)
+    }
+    //Cambiamos la lista a Array para poder devolverlo en la función
+    return listaPrimos.toIntArray()
+}
