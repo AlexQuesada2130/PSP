@@ -1,0 +1,24 @@
+fun main() {
+    //Función narcisista o número de Armstrong
+    println(esNumeroNarcisista(153))
+}
+
+fun esNumeroNarcisista(numero: Int): Boolean {
+    // Convertir el número a string para obtener sus dígitos
+    val digitos = numero.toString()
+    val cantidadDigitos = digitos.length
+    
+    // Calcular la suma de cada dígito elevado a la cantidad de dígitos
+    var suma = 0
+    for (digito in digitos) {
+        val valorDigito = digito.digitToInt()
+        var potencia = 1
+        repeat(cantidadDigitos) {
+            potencia *= valorDigito
+        }
+        suma += potencia
+    }
+    
+    // Verificar si la suma es igual al número original
+    return numero == suma
+}
