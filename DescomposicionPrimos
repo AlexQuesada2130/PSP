@@ -1,0 +1,29 @@
+fun main() {
+    println(descomponerPrimo(100))
+}
+
+fun descomponerPrimo(numero: Int): List<Int> {
+    //Usamos mutableList puesto que tendremos que agregar contenido en el transcurso del programa
+    val listaPrimos = mutableListOf<Int>()
+    var n = numero
+    
+    while (n % 2 == 0) {
+        listaPrimos.add(2)
+        n /= 2
+    }
+    
+    var divisor = 3
+    while (divisor * divisor <= n){
+        while (n % divisor == 0){
+        	listaPrimos.add(divisor)
+        	n /= divisor
+        }
+        divisor += 2
+    }
+    //Añadiendo este if acotamos la posibilidad de perder un número primo
+    if (n > 1) {
+        listaPrimos.add(n)
+    }
+    
+    return listaPrimos
+}
