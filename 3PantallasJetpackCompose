@@ -1,1 +1,220 @@
+package org.izv.aqs.pantallasconjetpackcompose
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import org.izv.aqs.pantallasconjetpackcompose.ui.theme.PantallasConJetpackComposeTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            PantallasConJetpackComposeTheme {
+                MainScreen()
+            }
+        }
+    }
+}
+
+
+@Composable
+fun MainScreen(modifier: Modifier = Modifier) {
+    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+        DisplayContent(
+            modifier = Modifier.padding(innerPadding)
+        )
+    }
+}
+
+@Composable
+fun DisplayContent(modifier: Modifier = Modifier){
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Image(
+            painter = painterResource(id = R.drawable.foto1),
+            contentDescription = null,
+            modifier = Modifier
+                .height(200.dp)
+                .fillMaxWidth(),
+            contentScale = ContentScale.FillWidth
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = "Jetpack Compose Tutorial",
+            fontSize = 20.sp
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = "Jetpack Compose es un toolkit moderno para construir interfaces nativas en Android. " +
+                    "Simplifica y acelera el desarrollo de UI con menos código y herramientas poderosas.\n\n" +
+                    "Compose se basa en funciones declarativas llamadas Composables. " +
+                    "Estas funciones te permiten definir la interfaz de tu app describiendo qué mostrar, " +
+                    "en lugar de cómo construirlo." +
+                    "Para crear una función Composable, añade la anotación @Composable al nombre de la función.",
+        )
+    }
+}
+
+@Composable
+fun SecondScreen(modifier: Modifier = Modifier){
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Image(
+            painter = painterResource(id = R.drawable.check),
+            contentDescription = null,
+            modifier = Modifier
+                .height(400.dp)
+                .fillMaxWidth(),
+            contentScale = ContentScale.FillWidth
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = "All task completed",
+            fontSize = 20.sp
+        )
+        Text(
+            text = "Nice work!",
+            fontSize = 15.sp
+        )
+    }
+}
+
+@Composable
+fun ThirdScreen(modifier: Modifier = Modifier){
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(0.5f)
+        ) {
+            Box(
+            modifier = Modifier
+                .weight(0.5f)
+                .fillMaxHeight()
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+                Text(
+                    text = "Text composable \n"+
+                    "Displays text and follows the recommended Material Design guidelines.",
+                )
+        }
+
+            // Image composable - ocupa el 50% del ancho de la pantalla
+            Box(
+                modifier = Modifier
+                    .weight(0.5f)
+                    .fillMaxHeight()
+                    .background(Color(0xFFB81AFF))
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                    Text(
+                        text = "Image composable \n" +
+                        "Creates a composable that lays out and draws a given Painter class object.",
+                    )
+            }
+        }
+
+        // Fila inferior - ocupa el 50% de la altura de la pantalla
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(0.5f)
+        ) {
+            // Row composable - ocupa el 50% del ancho de la pantalla
+            Box(
+                modifier = Modifier
+                    .weight(0.5f)
+                    .fillMaxHeight()
+                    .background(Color(0xFFB81AFF))
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Row composable \n" +
+                            "A layout composable that places its children in a horizontal sequence.",
+                    )
+                }
+            }
+
+            // Column composable - ocupa el 50% del ancho de la pantalla
+            Box(
+                modifier = Modifier
+                    .weight(0.5f)
+                    .fillMaxHeight()
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Column composable \n" +
+                            "A layout composable that places its children in a vertical sequence.",
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    PantallasConJetpackComposeTheme {
+        MainScreen()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Second() {
+    PantallasConJetpackComposeTheme {
+        SecondScreen()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Third() {
+    PantallasConJetpackComposeTheme {
+        ThirdScreen()
+    }
+}
