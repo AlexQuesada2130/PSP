@@ -1,0 +1,74 @@
+import kotlin.math.sqrt
+import kotlin.math.pow
+
+class Punto(var x: Double = 0.0, var y: Double = 0.0) {
+    
+    // Método para mover el punto a una nueva posición
+    fun mover(nuevaX: Double, nuevaY: Double) {
+        x = nuevaX
+        y = nuevaY
+    }
+    
+    // Método para calcular la distancia a otro punto
+    fun distancia(otro: Punto): Double {
+        val diferenciaX = otro.x - x
+        val diferenciaY = otro.y - y
+        return sqrt(diferenciaX.pow(2) + diferenciaY.pow(2))
+    }
+    
+    // Sobrecarga del operador + para sumar dos puntos
+    operator fun plus(otro: Punto): Punto {
+        val nuevoX = x + otro.x
+        val nuevoY = y + otro.y
+        return Punto(nuevoX, nuevoY)
+    }
+    
+    // Sobrecarga del operador - para restar dos puntos
+    operator fun minus(otro: Punto): Punto {
+        val nuevoX = x - otro.x
+        val nuevoY = y - otro.y
+        return Punto(nuevoX, nuevoY)
+    }
+    
+    // Método equals
+    override fun equals(other: Any?): Boolean {
+        if (other !is Punto) return false
+        return x == other.x && y == other.y
+    }
+    
+    // Método toString para mostrar el punto
+    override fun toString(): String {
+        return "Punto(x=$x, y=$y)"
+    }
+}
+
+fun main() {
+    // Constructor principal
+    val p1 = Punto(3.0, 4.0)
+    println(p1)
+    
+    // Constructor secundario (valores por defecto)
+    val p2 = Punto()
+    println(p2)
+    
+    // Mover punto
+    p2.mover(1.0, 2.0)
+    println(p2)
+    
+    // Calcular distancia
+    val distancia = p1.distancia(p2)
+    println("Distancia: $distancia")
+    
+    // Sumar puntos
+    val p3 = p1 + p2
+    println("Suma: $p3")
+    
+    // Restar puntos
+    val p4 = p1 - p2
+    println("Resta: $p4")
+    
+    // Comparar puntos
+    val p5 = Punto(3.0, 4.0)
+    println("¿p1 es igual a p5? ${p1.equals(p5)}")
+    println("¿p1 es igual a p2? ${p1.equals(p2)}")
+}
